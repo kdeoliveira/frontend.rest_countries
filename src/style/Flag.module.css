@@ -1,0 +1,12 @@
+.Flag_container{
+    
+    /* justify-self: stretch; */
+    align-self: stretch;
+    background-color: black;
+}
+
+.Flag_body{
+    display: flex;
+    flex-direction: row;
+    
+}

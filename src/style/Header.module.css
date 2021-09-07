@@ -1,0 +1,15 @@
+.Header_main{
+    padding: 0 20px;
+    background-color: hsl(0, 0%, 100%);
+
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 2px solid hsl(0, 0%, 52%);
+}
+
+.Header_main .Header_title{
+    font-weight: 800;
+}
