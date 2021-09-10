@@ -1,0 +1,62 @@
+$darkMode_elements: hsl(209, 23%, 22%);
+$darkMode_background: hsl(207, 26%, 17%);
+$darkMode_text: hsl(0, 0%, 100%);
+
+$lightMode_elements: hsl(0, 0%, 100%);
+$lightMode_background: hsl(0, 0%, 98%);
+$lightMode_input: rgb(133, 133, 133);
+$lightMode_text: rgb(17, 21, 23);
+
+@mixin boxShadow() {
+    // @if ($lightMode) {
+        box-shadow: 0 1.5px 6px 1.5px hsl(0, 0, 85%);
+        // background-color: $lightMode_elements;
+    
+
+    // &:hover {
+    //     background-color: $lightMode_background;
+    // }
+}
+
+
+
+@mixin withCurvedBorders{
+    border-radius: 5px;
+}
+
+
+%dark_mode_text{
+    color: $darkMode_text;
+}
+
+%dark_mode_bg{
+    background-color: $darkMode_background;
+}
+
+%light_mode_elements{
+    background-color: $lightMode_elements !important;
+    color: $lightMode_text;
+}
+
+%dark_mode_elements{
+    background-color: $darkMode_elements !important;
+    color: $darkMode_text;
+}
+
+
+@mixin mode($type, $shadow: false){
+    transition: background-color 400ms;
+    
+
+    &[color="Light Mode"]{
+        @extend %light_mode_#{$type};
+        
+    }
+
+    &[color="Dark Mode"]{
+        @extend %dark_mode_#{$type};
+        @if($shadow){
+            box-shadow: 0 1.5px 6px 1.5px hsl(208, 24%, 14%);
+        }
+    }
+}

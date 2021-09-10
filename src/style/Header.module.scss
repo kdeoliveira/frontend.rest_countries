@@ -1,0 +1,45 @@
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import "Main";
+
+.Header_main{
+    padding: 0 5%;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 1.5px 6px 1.5px hsl(0, 0%, 85%);
+    @include mode("elements", true)
+}
+
+.Theme_icon{
+    position: relative;
+    text-align: center;
+    height: 50px;
+    width: 150px;
+    padding: 0 16px 0;
+    display: block;
+    
+    cursor: pointer;
+    &::after{
+        @extend %fa-icon;
+        @extend .fa;
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        
+    }
+
+    &[aria-checked="false"]::after{
+        content: fa-content($fa-var-moon);
+        
+    }
+
+    &[aria-checked="true"]::after{
+        
+        content: fa-content($fa-var-sun);
+    }
+}
+

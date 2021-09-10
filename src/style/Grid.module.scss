@@ -1,0 +1,53 @@
+@import 'Main';
+
+.Grid_container{
+    
+    display: grid; 
+    grid-auto-flow: dense; 
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: start;
+    grid-template-columns: repeat(4, 250px); 
+    grid-template-rows: minmax(100px, 1fr) repeat(auto-fill, minmax(285px, 300px));
+    grid-auto-rows: minmax(285px, 300px);
+    gap: 50px; 
+    grid-template-areas: 
+      "search search search filter"
+      ". . . ."; 
+}
+.Grid_search { grid-area: search; }
+.Grid_filter { grid-area: filter; }
+
+
+
+/* .Grid_body{
+    height: calc(100vh - 2px - 50px);
+} */
+
+.Grid_body {
+    
+    margin-bottom: 100px;
+    & > div{
+    width: 90%;
+    margin: auto;
+    }
+}
+
+.Grid_body{
+    position: relative;
+}
+
+.Grid_loadmore{
+    font-size: 14px;
+    background-color: $darkMode_background;
+    color: $darkMode_text;
+    padding: 10px;
+    
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    cursor: pointer;
+    left: 50%;
+    bottom: -70px;
+    transform: translateX(-50%);
+}

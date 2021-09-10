@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ReactNode } from "react";
-import style from "../style/Component.module.css";
+import style from "../style/Component.module.scss";
+import SwitchButton from "./SwitchButton.element";
 
 interface IconBtnProps{
     children?: ReactNode;
@@ -9,16 +10,15 @@ interface IconBtnProps{
 
 }
 
-const IconBtn = React.forwardRef<HTMLButtonElement, IconBtnProps>(({children, color, icon}, ref) => {
+const IconBtn : React.FC<IconBtnProps> = ({children, color, icon}) => {
 
-    const [state, setState] = useState<boolean>(false);
 
     return (
-        <button className={style.Theme_icon} role="switch" aria-checked={state} onClick={() => setState(x => !x)}>
+        <SwitchButton className={style.Theme_icon}>
             <span className={style.Inline_icon}><img src={icon} alt={children && typeof children === "string" ? children : "header icon"} /></span>
             {children}
-        </button>
+        </SwitchButton>
     )
-})
+}
 
 export default IconBtn;
