@@ -18,6 +18,14 @@ $lightMode_text: rgb(17, 21, 23);
     // }
 }
 
+@mixin no_list{
+    padding: 0;
+    margin: 0;
+    & li{
+        list-style: none;
+        line-height: 1.5;
+    }
+}
 
 
 @mixin withCurvedBorders{
@@ -40,6 +48,14 @@ $lightMode_text: rgb(17, 21, 23);
 
 %dark_mode_elements{
     background-color: $darkMode_elements !important;
+    color: $darkMode_text;
+}
+
+%light_mode_text{
+    color: $lightMode_text;
+}
+
+%dark_mode_text{
     color: $darkMode_text;
 }
 

@@ -1,0 +1,91 @@
+@import "Main";
+
+.Loader-main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    background: transparent;
+    .Loader-bar{
+        height: 3px;
+        width: 30%;
+        min-width: 150px;
+        margin: auto;
+        background-color: $darkMode_background;
+        overflow: hidden;
+        display: block;
+        background-clip: padding-box;
+        position: relative;
+        border-radius: 3px;
+        filter: drop-shadow(0 0 6px $lightMode_input) ;
+    }
+}
+
+
+
+.Loader-spinner-1{
+    position: absolute;
+    height: 5px;
+    width: 50px;
+    background-color: red;
+    background-clip: padding-box;
+    display: block;
+    will-change: left, right;
+    z-index: 10;
+    
+}
+
+.Loader-log{
+    width: 30%;
+    min-width: 150px;
+    font-size: 10px;
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+}
+
+.Loader-log > li{
+    list-style: none;
+    padding: 0;
+    opacity: 0;
+    position: absolute;
+    transition: all;
+}
+
+.Loader-log > li.fade-in{
+    animation: fade normal;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .Loader-spinner-1{
+        animation-fill-mode: forwards;
+        animation: spinner1 forwards 2s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    }
+}
+
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    20%{
+        opacity: 1;
+    }
+    89%{
+        opacity: 1;
+    }
+    99%{
+        opacity: 0;
+    }
+
+}
+
+@keyframes spinner1{
+    from {
+        left: -100%;
+    }
+    to{
+        left: 100%;
+    }
+}

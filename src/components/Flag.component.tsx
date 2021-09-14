@@ -1,13 +1,15 @@
-import React, { ReactElement, useEffect, useMemo, useState } from "react";
+import React, { MouseEventHandler, ReactElement, useEffect, useMemo, useState } from "react";
 import { ReactNode } from "react";
 import { useTheme } from "../context/Theme.context";
 import { Flag } from "../service/country.service";
 import style from "../style/Flag.module.scss";
 import logo from "../logo.svg";
+import { useQuery } from "react-query";
 
 interface FlagProps {
     children?: ReactNode;
-    data: Flag
+    data: Flag;
+    onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 
@@ -17,17 +19,27 @@ function delay(ms: number) {
     })
  }
 
-const FlagComponent: React.FC<FlagProps> = ({ children, data }) => {
+const FlagComponent: React.FC<FlagProps> = ({ children, data, onClick }) => {
 
     const [darkMode] = useTheme();
 
+    // const queryIcon = useQuery(["flagIcon", data.flag], async () => {
+    //     return await fetch(data.flag).then((x) => x.text()).then((val) => {
+    //         const img = new Image();
+    //         img.src = 
+    //         return val
+    //     })
+    // })
 
-    return <div className={style.Flag_container} color={darkMode ? "Dark Mode" : "Light Mode"}>
+
+    return <div className={style.Flag_container} color={darkMode ? "Dark Mode" : "Light Mode"} onClick={onClick}>
             
                 <div className={style.Flag_svg}>
                     {
                      navigator.connection &&  (navigator.connection as any).downlink <= 0.5 ? 
-                         <img src={logo} alt="unable to load" /> : <img src={data.flag} alt={data.name}/>
+                         <img src={logo} alt="unable to load" /> : 
+                         <img src={data.flag} alt={data.name}/>
+                        
                      
                     }
                     

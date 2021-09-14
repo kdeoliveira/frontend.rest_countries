@@ -1,14 +1,5 @@
 @import 'Main';
 
-@mixin no_list{
-    padding: 0;
-    margin: 0;
-    & li{
-        list-style: none;
-        line-height: 1.5;
-    }
-}
-
 .Flag_container{
     border-radius: 5px;
     overflow: hidden;

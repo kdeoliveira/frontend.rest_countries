@@ -2,6 +2,7 @@
 import { KeyboardEvent, ReactNode, useEffect, useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useQuery, useQueryClient } from "react-query";
+import { useHistory } from "react-router-dom";
 import CountryService, { Flag } from "../service/country.service";
 import style from "../style/Grid.module.scss";
 import DropdownComponent from "./Dropdown.component";
@@ -17,6 +18,8 @@ interface GridProps {
 const GridComponent: React.FC<GridProps> = ({ children, leftGrid, rightGrid }) => {
     const [n, setN] = useState<number>(20);
 
+    const history = useHistory();
+
     const queryClient = useQueryClient();
 
     const [searchInput, setSearchInput] = useState<string>("");
@@ -25,16 +28,17 @@ const GridComponent: React.FC<GridProps> = ({ children, leftGrid, rightGrid }) =
 
     const [flags, setFlags] = useState<Flag[]>([])
 
-
     useEffect(() => {
-        
+
         if(data){
-            setFlags(data);
+            if(Boolean(searchInput)){
+                setFlags(data.filter((x) => x.name.toLowerCase().includes(searchInput)))
+            }else{
+                setFlags(data);
+            }
         }
-        if(data && Boolean(searchInput)){
         
-            setFlags(data.filter((x) => x.name.toLowerCase().includes(searchInput)))
-        }
+        
     }, [searchInput, data])
 
 
@@ -57,16 +61,18 @@ const GridComponent: React.FC<GridProps> = ({ children, leftGrid, rightGrid }) =
                 <div className={style.Grid_filter}>
                     {rightGrid || (
                         <DropdownComponent values={["Africa", "Americas", "Asia", "Europe", "Oceania", "Polar"]} onClick={async (name) => {
-                            setFlags(
-                                await queryClient.fetchQuery(["flags", name], () => CountryService.getFlagsByRegion(name))
-                            );
+                            
+                                setFlags(
+                                    await queryClient.fetchQuery(["flags", name], () => CountryService.getFlagsByRegion(name))
+                                );
+                            
                         }}>Filter by Region</DropdownComponent>
                     )}
                 </div>
                 
                 {flags.length > 0 && flags.map((x, i) => {
                     if(i < n)
-                        return <FlagComponent data={x} key={x.alpha3Code} />
+                        return <FlagComponent data={x} key={x.alpha3Code} onClick={() => history.push(`country/${x.alpha3Code.toLowerCase()}`)}/>
                     return null;
                 })}
 

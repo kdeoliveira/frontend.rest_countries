@@ -68,7 +68,8 @@ export default class CountryService{
             () => Promise.resolve([])
         ).then(
             async (data : Flag[]) => {
-                return data.slice(0, n)
+                
+                return data;
             }
         )
     }
@@ -81,6 +82,24 @@ export default class CountryService{
             () => Promise.resolve([])
         ).then(
             async (data : Flag[]) => {
+                return data;
+            }
+        )
+    }
+
+    public static async getFlagByName(name: string) : Promise<Flag>{
+        console.log("FETCHING...")
+        return await fetch(`https://restcountries.eu/rest/v2/alpha/${name.toLowerCase()}`).then(
+            (res) => {
+                if(res.status === 200)
+                    return res.json()
+            }
+        ).catch(
+            (e) => {
+                return Promise.resolve(null)
+            }
+        ).then(
+            async (data : Flag) => {
                 return data;
             }
         )

@@ -75,3 +75,16 @@ input[type="search"]{
   }
 }
 
+
+button.btn{
+  background-color: $lightMode_elements;
+  @include mode("elements", true);
+  padding: 10px 20px;
+  @include boxShadow();
+  @include withCurvedBorders();
+  margin: auto 5px;
+
+  &.flat{
+    padding: 3px 20px;
+  }
+}
