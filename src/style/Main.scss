@@ -1,3 +1,7 @@
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@use "sass:string";
+
 $darkMode_elements: hsl(209, 23%, 22%);
 $darkMode_background: hsl(207, 26%, 17%);
 $darkMode_text: hsl(0, 0%, 100%);
@@ -6,6 +10,10 @@ $lightMode_elements: hsl(0, 0%, 100%);
 $lightMode_background: hsl(0, 0%, 98%);
 $lightMode_input: rgb(133, 133, 133);
 $lightMode_text: rgb(17, 21, 23);
+
+
+$breakpoint_tablet: 1210px;
+$breakpoint_mobile: 700px;
 
 @mixin boxShadow() {
     // @if ($lightMode) {
@@ -32,6 +40,11 @@ $lightMode_text: rgb(17, 21, 23);
     border-radius: 5px;
 }
 
+
+%extendFontAwesome{
+    @extend %fa-icon;
+    @extend .fa;
+}
 
 %dark_mode_text{
     color: $darkMode_text;
@@ -74,5 +87,19 @@ $lightMode_text: rgb(17, 21, 23);
         @if($shadow){
             box-shadow: 0 1.5px 6px 1.5px hsl(208, 24%, 14%);
         }
+    }
+}
+
+
+
+@mixin mobile{
+    @media screen and (max-width: #{$breakpoint_mobile}){
+        @content;
+    }
+}
+
+@mixin tablet{
+    @media screen and (min-width: #{$breakpoint_mobile}) and (max-width: #{$breakpoint_tablet}){
+        @content;
     }
 }

@@ -28,13 +28,13 @@
         align-items: flex-start;
         align-content: center;
         column-gap: 100px;
-        grid-template-columns: 425px repeat(2, 200px); 
-        grid-template-rows: minmax(50px, 75px) minmax(200px, 225px) minmax(50px, 75px);
+        grid-template-columns: 425px repeat(2, 215px); 
+        grid-template-rows: minmax(50px, 75px) minmax(200px, 225px) minmax(50px, 125px);
 
         grid-template-areas: 
           "flag title title"
           "flag body_1 body_2"
-          "flag keyword keyword"
+          "flag keyword keyword";
     }
 
     & .Detail_flag{
@@ -43,6 +43,7 @@
         img{
             width: 100%;
             height: auto;
+            max-height: 275px;
             object-fit: fill;
             object-position: right;
         }
@@ -66,3 +67,49 @@
 .Detail_body_1{grid-area: body_1;}
 .Detail_body_2{grid-area: body_2;}
 .Detail_keyword{grid-area: keyword;}
+
+
+
+@include tablet{
+    .Detail_container{    
+        & .Detail_info{
+            column-gap: 20px;
+            grid-template-columns: 400px 215px; 
+            grid-template-rows: minmax(50px, 75px) minmax(150px, 205px) minmax(50px, 125px) minmax(50px, 125px);
+            row-gap: 5px;
+            grid-template-areas: 
+            "flag title"
+            "flag keyword"
+            "body_1 ."
+            "body_2 .";
+        }
+    }
+}
+
+
+@include mobile{
+    .Detail_container{
+        position: relative;
+        left: unset; top: unset; transform: unset;
+        margin: auto;
+        width: unset;
+        align-items: stretch;
+        & .Detail_back{
+            padding: 30px 10px;
+        }
+        & .Detail_info{
+            column-gap: 20px;
+            grid-template-columns: 325px; 
+            grid-template-rows: minmax(50px, 75px) minmax(150px, 205px) 50px minmax(50px, 125px) minmax(50px, 100px);
+            row-gap: 5px;
+            grid-template-areas: 
+            "flag"
+            "flag"
+            "title"
+            "body_1"
+            "body_2"
+            "keyword";
+        }
+    }
+    .Detail_keyword{padding-bottom: 10px;}
+}

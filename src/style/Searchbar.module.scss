@@ -34,3 +34,25 @@
         content: fa-content($fa-var-search);
     }
 }
+
+
+
+@include tablet{
+    .Searchbar_container{
+        width: 90%;
+
+        &:focus-within{
+            width: 100%;
+        }
+    }      
+}
+
+
+@include mobile{
+    .Searchbar_container{
+        width: 100%;
+        &:focus-within{
+            width: unset;
+        }
+    }
+}

@@ -27,7 +27,7 @@ const HeaderComponent : React.FC<HeaderProps> = ({children}) => {
             </div>
             <div>
             <SwitchButton className={style.Theme_icon} onClick={() => toggle()} color={mode}>
-            <h3>{mode}</h3>
+            <h3>{!darkMode ? "Dark Mode" : "Light Mode"}</h3>
             </SwitchButton>
             </div>
         </header>

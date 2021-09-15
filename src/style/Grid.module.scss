@@ -51,3 +51,38 @@
     bottom: -70px;
     transform: translateX(-50%);
 }
+
+
+@include tablet{
+    .Grid_body {
+        & > div{
+            width: unset;
+        }
+    }
+
+    
+    .Grid_container{
+        grid-template-columns: repeat(2, 250px); 
+        grid-template-rows: minmax(150px, 1fr) repeat(auto-fill, minmax(285px, 300px));
+        grid-auto-rows: minmax(285px, 300px);
+        gap: 20px; 
+        grid-template-areas: 
+          "search filter"
+          ". ."; 
+    }
+}
+
+
+@include mobile{
+    .Grid_container{
+        grid-template-columns: 250px; 
+        grid-template-rows: 75px 75px repeat(auto-fill, minmax(285px, 300px));
+        grid-auto-rows: minmax(285px, 300px);
+        gap: 20px; 
+        align-content: center;
+        grid-template-areas: 
+          "search"
+          "filter"
+          "."; 
+    }
+}

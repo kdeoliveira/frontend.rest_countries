@@ -27,7 +27,8 @@ const DropdownComponent: React.FC<DropdownProps> = ({ children, values, onClick 
     return (
         <div className={style.Dropdown_container} color={darkMode ? "Dark Mode" : "Light Mode"}>
             <SwitchButton ref={switchRef}>
-                <h3>{select || children}</h3>
+            <h3>{select || children}</h3>
+                {/* <h3>{select && select !== "__all__" ? select : children}</h3> */}
             </SwitchButton>
             <div color={darkMode ? "Dark Mode" : "Light Mode"} onClick={() => {
                 if(switchRef.current){
@@ -42,7 +43,7 @@ const DropdownComponent: React.FC<DropdownProps> = ({ children, values, onClick 
             
             {/* <a href="/#" onClick={(e) => {
                 e.preventDefault();
-                setSelect("all");
+                setSelect("__all__");
             }}>{children}</a> */}
         </div>
         </div >

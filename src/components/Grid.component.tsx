@@ -61,10 +61,10 @@ const GridComponent: React.FC<GridProps> = ({ children, leftGrid, rightGrid }) =
                 <div className={style.Grid_filter}>
                     {rightGrid || (
                         <DropdownComponent values={["Africa", "Americas", "Asia", "Europe", "Oceania", "Polar"]} onClick={async (name) => {
-                            
-                                setFlags(
-                                    await queryClient.fetchQuery(["flags", name], () => CountryService.getFlagsByRegion(name))
-                                );
+                                    setFlags(
+                                        await queryClient.fetchQuery(["flags", name], () => CountryService.getFlagsByRegion(name))
+                                    );
+    
                             
                         }}>Filter by Region</DropdownComponent>
                     )}

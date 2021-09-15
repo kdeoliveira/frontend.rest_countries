@@ -66,9 +66,9 @@ const DetailComponent: React.FC<DetailProps> = ({ children }) => {
                 <div className={style.Detail_keyword}>
                     {data.borders.length > 0 && (
                         <>
-                            <h3>Border Countries:</h3> {data.borders.map((x) => {
+                            <h3>Border Countries:</h3> {data.borders.map((x, i) => {
                                 return (
-                                    <SwitchButtonElement className="btn flat" onClick={() => history.replace(x.toLowerCase())} color={darkMode ? "Dark Mode" : "Light Mode"}>
+                                    <SwitchButtonElement key={i} className="btn flat" onClick={() => history.replace(x.toLowerCase())} color={darkMode ? "Dark Mode" : "Light Mode"}>
                                         {x}
                                     </SwitchButtonElement>
                                 )
